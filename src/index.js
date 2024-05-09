@@ -20,26 +20,6 @@ app.get('/', async (req, res) => {
     return res.send(filmes);
 });
 
-// Excluindo um registro
-app.delete("/:id", async (req, res) => {
-    const filme = await Filme.findByIdAndRemove(req.params.id);
-    return res.send(filme);
-});
-
-// Atualizando os registros
-app.put("/:id", async (req, res) => {
-    const filme = await Filme.findByIdAndUpdate(req.params.id, {
-        title: req.body.title,
-        description: req.body.description,
-        img_url: req.body.img_url,
-        trailer_url: req.body.trailer_url
-    }, {
-        new: true
-    });
-
-    return res.send(filme);
-});
-
 // Gravando as informações no Banco
 app.post('/novoregistro', async (req, res) => {
     const filme = new Filme({
@@ -50,6 +30,26 @@ app.post('/novoregistro', async (req, res) => {
     });
 
     await filme.save();
+    return res.send(filme);
+});
+
+// Excluindo um registro
+app.delete("/delete/:id", async (req, res) => {
+    const filme = await Filme.findByIdAndRemove(req.params.id);
+    return res.send(filme);
+});
+
+// Atualizando os registros
+app.put("/update/:id", async (req, res) => {
+    const filme = await Filme.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        description: req.body.description,
+        img_url: req.body.img_url,
+        trailer_url: req.body.trailer_url
+    }, {
+        new: true
+    });
+
     return res.send(filme);
 });
 
