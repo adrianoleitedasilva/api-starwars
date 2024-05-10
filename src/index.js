@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json())
 const port = 3000;
 
-mongoose.connect('mongodb+srv://adrianoleitedasilva:o114IVSW0rBTJJU5@api-starwars.ufn5b5y.mongodb.net/');
+mongoose.connect('mongodb+srv://<user>:<password>@api-starwars.ufn5b5y.mongodb.net/');
 
 const Filme = mongoose.model('Filme', {
     title: String,
